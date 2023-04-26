@@ -62,13 +62,13 @@ namespace MvcAzureCosmosDb.Controllers
         public async Task<IActionResult> Edit(Vehiculo car)
         {
             await this.service.UpdateVehiculoAsync(car);
-            return RedirectToAction("Index");
+            return RedirectToAction("Vehiculos");
         }
 
         public async Task<IActionResult> Delete(string id)
         {
             await this.service.DeleteVehiculoAsync(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Vehiculos");
         }
     }
 }
