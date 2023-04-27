@@ -79,5 +79,22 @@ namespace MvcAzureCosmosDb.Services
                 (id, new PartitionKey(id));
             return response.Resource;
         }
+
+        public async Task<List<Vehiculo>> GetCochesMarcaAsync(string marca)
+        {
+            string sql =
+                "select * from c where c.Marca ='" + marca + "'";
+            QueryDefinition definition =
+                new QueryDefinition(sql);
+            var query =
+                this.containerCosmos.GetItemQueryIterator<Vehiculo>(definition);
+            List<Vehiculo> cars = new List<Vehiculo>();
+            while (query.HasMoreResults)
+            {
+                var results = await query.ReadNextAsync();
+                cars.AddRange(results);
+            }
+            return cars;
+        }
     }
 }

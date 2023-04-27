@@ -75,5 +75,17 @@ namespace MvcAzureCosmosDb.Controllers
             await this.service.DeleteVehiculoAsync(id);
             return RedirectToAction("Vehiculos");
         }
+
+        public IActionResult BuscarCoche()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BuscarCoche(string marca)
+        {
+            List<Vehiculo> cars = await this.service.GetCochesMarcaAsync(marca);
+            return View(cars);
+        }
     }
 }

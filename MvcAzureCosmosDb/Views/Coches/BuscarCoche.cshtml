@@ -1,0 +1,71 @@
+﻿@model List<Vehiculo>
+
+ 
+
+    <h1 style="color: blue"> Buscador Coches Cosmos Db</h1>
+
+ 
+
+<form method="post">
+<label>Introduzca marca: </label>
+<input type="text" name="marca" class="form-control" />
+<button class="btn btn-outline-dark">
+        Filtrar
+</button>
+</form>
+
+ 
+
+@if(Model != null)
+{
+<table class="table">
+<thead>
+<tr>
+<th>Marca</th>
+<th>Modelo</th>
+<th>Imagen</th>
+<th>VelocidadMaxima</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+@foreach (var item in Model) {
+<tr>
+<td>
+                @Html.DisplayFor(modelItem => item.Marca)
+</td>
+<td>
+                @Html.DisplayFor(modelItem => item.Modelo)
+</td>
+<td>
+<img src="@Html.DisplayFor(modelItem => item.Imagen)" style="width: 150px; height: 150px;"/>
+</td>
+<td>
+                @Html.DisplayFor(modelItem => item.VelocidadMaxima)
+</td>
+<td>
+<a asp-action="Details" 
+                    asp-controller="Coches"
+                    asp-route-id="@item.Id"
+                    class="btn btn-info">
+                    Details
+</a>
+<a asp-action="Edit" 
+                    asp-controller="Coches"
+                    asp-route-id="@item.Id"
+                    class="btn btn-warning">
+                    Edit
+</a>
+<a asp-action="Delete" 
+                    asp-controller="Coches"
+                    asp-route-id="@item.Id"
+                    class="btn btn-danger">
+                    Delete
+</a>
+
+</td>
+</tr>
+}
+</tbody>
+</table> 
+}
