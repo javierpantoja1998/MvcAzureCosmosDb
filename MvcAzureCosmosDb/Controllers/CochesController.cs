@@ -39,8 +39,13 @@ namespace MvcAzureCosmosDb.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Vehiculo car)
+        public async Task<IActionResult> Create
+            (Vehiculo car, string existemotor)
         {
+            if (existemotor == null)
+            {
+                car.Motor = null;
+            }
             await this.service.InsertVehiculosAsync
                 (car);
             return RedirectToAction("Vehiculos");

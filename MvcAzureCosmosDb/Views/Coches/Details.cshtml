@@ -43,6 +43,13 @@
         </dd>
     </dl>
 </div>
+@if(Model.Motor != null)
+{
+    <h1>Tipo Motor: @Model.Motor.Tipo</h1>
+    <h1>Caballos: @Model.Motor.Caballos</h1>
+    <h1>Cilindrada: @Model.Motor.Cilindrada</h1>
+    <h1>Turbo: @Model.Motor.Turbo</h1>
+}
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
